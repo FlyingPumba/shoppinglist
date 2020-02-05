@@ -1,5 +1,15 @@
 apply plugin: 'com.android.application'
 
+/* ADDED for instrumentation begin */
+apply plugin: 'jacoco'
+
+
+jacoco {
+toolVersion = "0.8.2"
+}
+
+/* ADDED for instrumentation end */
+
 Properties local_properties = new Properties()
 File localPropertiesFile = project.rootProject.file('private.properties')
 if (localPropertiesFile.exists()) {
@@ -40,6 +50,12 @@ android {
     }
 
     buildTypes {
+
+/* ADDED test coverage enabled for instrumentation begin */
+debug {
+            testCoverageEnabled = true
+}
+/* ADDED test coverage enabled for instrumentation end */
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.cfg'
